@@ -1,0 +1,37 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+# Gradle specific
+.gradle/
+**/.gradle/
+gradle-app.setting
+
+# Ignore Gradle build output directory
+build/
+
+# Log file
+*.log
+
+# IntelliJ IDEA (your existing rules are good, these are more complete)
+*.iml
+*.ipr
+*.iws
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/copyright/
+.idea/encodings.xml
+.idea/runConfigurations/
+.idea/dataSources.xml
+.idea/shelf/
+.idea/datasources.xml
+.idea/dataSources.ids
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
