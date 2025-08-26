@@ -1,0 +1,1 @@
+java -jar build/libs/2324-2-LEIC42D-G13.jar

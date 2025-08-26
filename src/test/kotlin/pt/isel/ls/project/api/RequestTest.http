@@ -1,0 +1,73 @@
+
+
+# a03da925-c66a-401e-92d4-2effadb0a6f5
+### Create player from name and email 0b55ca49-8846-4767-8caa-8da63f6db636
+POST http://localhost:3030/players
+Content-Type: application/json
+
+{
+  "name": "Afndetfergtwdfrgehfedrrgrtdehonsrtgiof4",
+  "email": "fadne4rftdtdrrgqedwrdsrodghrsrggsrntieo@gmail.com"
+}
+
+### Get player by ID ###
+GET http://localhost:3030/players/1
+
+### Get all players given a username ###
+GET http://localhost:3030/players?limit=10&skip=0&username=Fel
+
+### Create a game by name, developer and genres ###
+POST http://localhost:3030/games
+Authorization: Bearer 0245b440-58eb-4e0d-9f97-d1b1fdef26a8
+Content-Type: application/json
+
+{
+  "name": "The Witcher 4",
+  "developer": "CD Projekt Red",
+  "genres": ["RPG", "Open World"]
+}
+
+### Get game by ID ###
+GET http://localhost:3030/games/1
+Authorization: Bearer a8cef81e-b153-4b5f-9bf4-51110516eead
+
+### Get all games ?limit=10&skip=0 ###
+GET http://localhost:3030/games?limit=10&skip=0&developer=Bungie&genres=Action
+Authorization: Bearer 74dde65c-9d30-454a-aebf-c94b9d979938
+Content-Type: application/json
+
+### Create a Session by capacity, game ID and date ###
+POST http://localhost:3030/sessions
+Authorization: Bearer 53e154d5-5d78-4e6c-9627-4225332bc16c
+Content-Type: application/json
+
+{
+  "capacity": 5,
+  "gameName": "The Witcher 3",
+  "date": "2024-10-10T10:30:00.00Z"
+}
+
+### Add player to Session by player ID and session ID ###
+PUT http://localhost:3030/sessions/124/players/191
+Authorization: Bearer da2210ef-3c0f-484b-89c7-137d17df5ea7
+
+
+
+### Get a Session by ID ###
+GET http://localhost:3030/sessions/1
+Authorization: Bearer 0245b440-58eb-4e0d-9f97-d1b1fdef26a8
+
+### Get all Sessions ###
+GET http://localhost:3030/sessions?limit=5&skip=0
+Authorization: Bearer 216229fb-5c10-416e-ad1b-e2c5bca3d2bd
+Content-Type: application/json
+
+### Invite a player to a session ###
+POST http://localhost:3030/sessions/124/players/191/invite/190
+Authorization: Bearer da2210ef-3c0f-484b-89c7-137d17df5ea7
+Content-Type: application/json
+
+### Get invites to sessions ###
+GET http://localhost:3030/players/9/invites
+Authorization: Bearer c85d74d6-75c4-44a8-a58b-a2f53c1893c0
+Content-Type: application/json

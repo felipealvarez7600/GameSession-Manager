@@ -1,0 +1,405 @@
+#search-box {
+    display: flex;
+    align-items: start;
+    justify-content: space-around;
+
+}
+
+#genres {
+    display: inline-block;
+    width: 30%;
+
+
+}
+
+#developer {
+    display: inline-block;
+    width: 30%;
+
+
+}
+
+
+.home-container {
+    text-align: center; /* Center align the content */
+    padding: 50px; /* Add padding to create space around the content */
+}
+
+h1 {
+    color: white; /* Change the color of the heading */
+    font-size: 30px; /* Increase the font size of the heading */
+    text-align: center;
+}
+
+h2 {
+    color: white; /* Change the color of the heading */
+    font-size: 20px; /* Increase the font size of the heading */
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+p {
+    color: white;
+    font-size: 15px;
+}
+
+li {
+    color: white;
+    margin-bottom: 5px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.ul2 {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.div.selection {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.div{
+    animation: fadeInAnimation ease-in-out 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.div.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+    animation: fadeInAnimation ease-in-out 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+
+
+.div.checkbox {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+input[type=checkbox] {
+    width: 10px;
+    height: 10px;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        top: 55%
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.div.lists {
+    position: fixed;
+    top: 38%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; /* Center align the content */
+    border-radius: 30px;
+    min-width: 410px;
+    display: flex;
+    flex-direction: column; /* Stack player names vertically */
+    justify-content: space-around; /* Distribute space evenly between player names */
+}
+
+.div.lists.players.up {
+    position: fixed;
+    top: 26%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; /* Center align the content */
+    border-radius: 30px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column; /* Stack player names vertically */
+    justify-content: space-around; /* Distribute space evenly between player names */
+}
+
+.div.lists.players.down {
+    position: fixed;
+    top: 69%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; /* Center align the content */
+    border-radius: 30px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column; /* Stack player names vertically */
+    justify-content: space-around; /* Distribute space evenly between player names */
+}
+
+.div.lists.B {
+    position: fixed;
+    left: 12%;
+    top: 36%;
+    transform: translateX(-50%);
+    border-radius: 30px;
+    min-width: 410px;
+    display: flex;
+    flex-direction: column; /* Stack player names vertically */
+    justify-content: space-around; /* Distribute space evenly between player names */
+}
+.div.lists.C {
+    position: fixed;
+    top:27%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; /* Center align the content */
+    border-radius: 30px;
+    min-width: 410px;
+    display: flex;
+    flex-direction: column; /* Stack player names vertically */
+    justify-content: space-around; /* Distribute space evenly between player names */
+}
+
+.div.centered-up {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.div.centered-below {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.div.centered-right {
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.div.centered-bottom {
+    position: fixed;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button.list-last {
+    min-width: 410px;
+    background-color: white;
+    color: black; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.button.list {
+    min-width: 410px;
+    background-color: white;
+    color: black; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.button.list:hover {
+    background-color: rgba(245, 245, 245, 0.8); /* Darker shade of white with 80% opacity */
+    color: black; /* Maintain black text color */
+}
+
+/* Style for the player names */
+.player-name {
+    cursor: pointer; /* Show pointer cursor on hover to indicate clickability */
+    padding: 5px; /* Add padding for spacing */
+    margin-bottom: 5px; /* Add margin to separate each player name */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    background-color: #f0f0f0; /* Add background color */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.button:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+/* Additional styles for specific button types */
+.button.primary {
+    background-color: #007bff;
+}
+
+.button.secondary {
+    background-color: #6c757d; /* Gray color */
+}
+
+.button.success {
+    background-color: #28a745; /* Green color */
+}
+
+.button.danger {
+    background-color: #dc3545; /* Red color */
+}
+
+.centered {
+    text-align: center;
+}
+
+.text.white {
+    color: white;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.input.smaller {
+    width: 50%;
+}
+
+label {
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+select {
+    padding: 4px 5px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+}
+
+.item {
+    padding: 10px;
+}
+
+.container.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.div.text {
+    text-align: center;
+}
+
+.p.last {
+    text-align: center;
+    min-width: 410px;
+    background-color: white;
+    color: black; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+div.sessions {
+    position: fixed;
+    top: 74%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+    padding: 20px;
+    text-align: center; /* Center align the content */
+    border-radius: 20px;
+}
+
+.profile-image {
+    width: 300px; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    border-radius: 20px; /* Create a circular border */
+}
+
+.custom-file-upload {
+    background-color: white;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}

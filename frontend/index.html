@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="./images/Logo.png" type="image/png">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./style.css">
+        <script src="./index.js" type="module"></script>
+        <style>
+            body::before{
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 200%; /* Double the width to allow for the sliding effect */
+                height: 100%;
+                background: url('./images/Background.png');
+                background-size: cover;
+                z-index: -1;
+                animation: slide 300s linear infinite;
+            }
+            @keyframes slide {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(-50%); }
+                100% { transform: translateX(0); }
+            }
+
+        </style>
+    </head>
+    <body>
+    <div id="mainContent"></div>
+    </body>
+</html>

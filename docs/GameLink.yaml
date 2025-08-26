@@ -1,0 +1,611 @@
+openapi: 3.0.3
+info:
+  title: GameLink
+  description: |-
+    Our GameLink API was made with the intent of facilitating the common problem that many game developers suffer when it comes to their online functionalities, sessions making.\
+    With our service a developer only needs to register its game within a genre and implement the API described bellow to automatically create sessions for your players, or give them the ability to search their own.
+  version: 1.0.0
+externalDocs:
+  description: Find out more about GameLink
+  url: https://github.com/isel-leic-ls/2324-2-LEIC42D-G13/blob/main/src/main/docs/Relatorio.md
+servers:
+  - url: https://localhost:3030
+tags:
+  - name: Player
+    description: Player related actions
+  - name: Game
+    description: Game related actions
+  - name: Session
+    description: Session operations
+paths:
+  /players:
+    post:
+      tags:
+        - Player
+      summary: Create a new player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Player created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerResponse'
+    get:
+      tags:
+        - Player
+      summary: Get a list of the players
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Players Details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlayerDetails'
+  /authenticate:
+    post:
+      tags:
+        - Player
+      summary: Login an existing player
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Player logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+  /authenticated:
+    get:
+      tags:
+        - Player
+      summary: Get id of player of a given token
+      responses:
+        '200':
+          description: Return id of player
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /players/{playerId}:
+    get:
+      tags:
+        - Player
+      summary: Get the details of a player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Player details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerDetails'
+    put:
+      description: "Updates user profile"
+      tags:
+        - Player
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                details:
+                  type: string
+                image:
+                  type: string
+      responses:
+        '200':
+          description: Successfully updated user profile
+  /players/{playerId}/invites:
+    get:
+      tags:
+        - Player
+      summary: Retrive a given player's invites
+      parameters:
+        - name: playerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invites Details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session:
+                    $ref: '#/components/schemas/SessionDetails'
+                  player:
+                    $ref: '#/components/schemas/PlayerDetails'
+  /players/logout:
+    delete:
+      tags:
+        - Player
+      summary: Logs out and deletes the player's session token
+      parameters:
+        - name: playerId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully logged out player and deleted token
+  /games:
+    get:
+      tags:
+        - Game
+      summary: Get a list of games
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          schema:
+            type: integer
+        - name: genres
+          in: query
+          schema:
+            type: string
+        - name: developer
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameDetails'
+    post:
+      tags:
+        - Game
+      summary: Create a new game
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                developer:
+                  type: string
+                genres:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '201':
+          description: Game created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameResponse'
+  /games/partial:
+    get:
+      description: Retrieve all the games with corresponding partial name
+      parameters:
+        - name: gameName
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of game details matching partial name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/GameDetails"
+
+
+
+  /games/{gameId}:
+    get:
+      tags:
+        - Game
+      summary: Get the details of a game
+      parameters:
+        - name: gameId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Game details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameDetails'
+  /developers:
+    get:
+      tags:
+        - Game
+      summary: Get all registered developers
+      responses:
+        '200':
+          description: Game details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: string
+  /genres:
+    get:
+      tags:
+        - Game
+      summary: Get all registered genres
+      responses:
+        '200':
+          description: Game details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: string
+  /sessions:
+    post:
+      tags:
+        - Session
+      summary: Create a new session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                capacity:
+                  type: integer
+                gameName:
+                  type: string
+                date:
+                  type: string
+                  format: date-time
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+    get:
+      tags:
+        - Session
+      summary: Get a list of sessions
+      parameters:
+        - name: gid
+          in: query
+          schema:
+            type: string
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: state
+          in: query
+          schema:
+            type: string
+            enum: [ open, close ]
+        - name: pid
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of sessions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SessionDetails'
+  /sessions/{sessionId}:
+    get:
+      tags:
+        - Session
+      summary: Get the detailed information of a session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDetails'
+        '404':
+          description: Session not found
+    delete:
+      tags:
+        - Session
+      summary: Delete an existing session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session Deleted
+        '404':
+          description: Session not found
+    put:
+      tags:
+        - Session
+      summary: Update an existing Session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: capacity
+          in: query
+          required: false
+        - name: date
+          in: query
+          required: false
+      responses:
+        200:
+          description: Session successfully updated
+        404:
+          description: Session not found
+  /sessions/{sessionId}/players/{playerId}:
+    put:
+      tags:
+        - Session
+      parameters:
+        - name: playerId
+          in: path
+          schema:
+            type: integer
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      summary: Add a player to an existing session
+      responses:
+        200:
+          description: Successfully added a player
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDetails'
+    delete:
+      tags:
+        - Session
+      parameters:
+        - name: playerId
+          in: path
+          schema:
+            type: integer
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      summary: Remove a player from an existing session
+      responses:
+        200:
+          description: Successfully removed a player
+        404:
+          description: Player or Session not found
+  /sessions/{sessionId}/players/{fromPlayerId}/invite/{toPlayerId}:
+    post:
+      tags:
+        - Session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fromPlayerId
+          in: path
+          schema:
+            type: integer
+        - name: toPlayerId
+          in: path
+          schema:
+            type: integer
+      summary: Send an invitation to a player from a player to a given session
+      responses:
+        '201':
+          description: Successfully sent invite
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PlayerResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        playerId:
+          type: string
+    Player:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        details:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+            format: binary
+        password:
+          type: string
+    PlayerDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        details:
+          type: string
+        image:
+          type: array
+          items:
+            type: string
+            format: binary
+    GameResponse:
+      type: object
+      properties:
+        gameId:
+          type: string
+    GameDetails:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        developer:
+          type: string
+        genres:
+          type: array
+          items:
+            type: string
+    SessionResponse:
+      type: object
+      properties:
+        sessionId:
+          type: string
+    SessionDetails:
+      type: object
+      properties:
+        sessionId:
+          type: string
+        capacity:
+          type: integer
+        gameId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        playerIds:
+          type: array
+          items:
+            type: integer
+        state:
+          type: string
+          enum: ["OPEN", "CLOSED"]
+        gameName:
+          type: string
+
+security:
+  - BearerAuth: []

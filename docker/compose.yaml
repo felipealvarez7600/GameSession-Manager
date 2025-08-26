@@ -1,0 +1,45 @@
+name: "ls-project"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ../src/main/sql/projectAddData.sql:/docker-entrypoint-initdb.d/insert.sql
+      - ../src/main/sql/projectTriggers.sql:/docker-entrypoint-initdb.d/triggers.sql
+      - ../src/main/sql/projectCreateSchema.sql:/docker-entrypoint-initdb.d/create.sql
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432" # Remove mapping for production, database should only be visible to gamelink service
+    networks:
+      - "db-to-gamelink"
+  db_test:
+    image: postgres
+    volumes:
+      - ../src/main/sql/projectAddData.sql:/docker-entrypoint-initdb.d/insert.sql
+      - ../src/main/sql/projectTriggers.sql:/docker-entrypoint-initdb.d/triggers.sql
+      - ../src/main/sql/projectCreateSchema.sql:/docker-entrypoint-initdb.d/create.sql
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+    ports:
+      - "5433:5432" # Remove mapping for production, database should only be visible to gamelink service
+    networks:
+      - "db-to-gamelink"
+  gamelink:
+    build:
+      dockerfile: /Dockerfile
+      context: ../
+    environment:
+      - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/postgres?user=postgres&password=postgres
+    networks:
+      - "db-to-gamelink"
+    ports:
+      - "3030:3030"
+
+networks:
+  db-to-gamelink:
+    driver: bridge
