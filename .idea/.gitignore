@@ -9,6 +9,7 @@
 
 # Gradle specific
 .gradle/
+**/.gradle/
 gradle-app.setting
 
 # Ignore Gradle build output directory
