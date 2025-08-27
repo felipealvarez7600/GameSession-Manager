@@ -1,5 +1,3 @@
-# Phase 2
-
 ## Introduction
 
 This document contains the relevant design and implementation aspects of LS project's second phase.
