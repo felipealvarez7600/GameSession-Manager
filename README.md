@@ -8,7 +8,7 @@ This document contains the relevant design and implementation aspects of LS proj
 
 The following diagram holds the Entity-Relationship model for the information managed by the system.
 
-![img.png](Schema.png)
+![img.png](./docs/Schema.png)
 
 
 
